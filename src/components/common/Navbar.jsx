@@ -9,7 +9,7 @@ const Navbar = () => {
   };
   return (
     <nav className="bg-blue-900 p-4 shadow-2xl">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo or Brand */}
         <Link to="/" className="text-white text-xl font-medium">
           Bus Ticket Reservation

@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-import Footer from "../common/footer";
-import Navbar from "../common/navbar";
+import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
 
-function AuthLayout({children}) {
+const AuthLayout = ({ children }) => {
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <Navbar />
-      {children}
+      <div className="container mx-auto px-4">{children}</div>
       <Footer />
     </div>
   );
-}
+};
 
 export default AuthLayout;

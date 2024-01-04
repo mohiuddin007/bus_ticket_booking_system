@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-import Footer from "../common/footer";
-import Navbar from "../common/navbar";
+import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
 
-function CommonLayout({children}) {
+const CommonLayout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      {children}
+      <div className="container mx-auto px-4">{children}</div>
       <Footer />
     </div>
   );
-}
+};
 
 export default CommonLayout;

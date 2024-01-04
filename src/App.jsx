@@ -3,6 +3,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import CommonLayout from "./components/layouts/CommonLayout";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/Error";
+import Booking from "./pages/Booking";
+import User from "./pages/User";
 
 const router = createBrowserRouter([
   {
@@ -14,13 +16,25 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "about",
-    element: <div className="text-red-500 font-bold">About</div>,
+    path: "/booking/:slug",
+    element: (
+      <CommonLayout>
+        <Booking />
+      </CommonLayout>
+    ),
+  },
+  {
+    path: "/user",
+    element: (
+      <CommonLayout>
+        <User />
+      </CommonLayout>
+    ),
   },
   {
     path: "*",
-    element: <ErrorPage/>
-  }
+    element: <ErrorPage />,
+  },
 ]);
 
 function App() {

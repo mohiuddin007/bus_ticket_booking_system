@@ -1,11 +1,13 @@
-import HeroBanner from "../components/home/heroBanner";
+import AvailableBusCard from "../components/home/AvailableBus";
+import HeroBanner from "../components/home/HeroBanner";
 
-function Home() {
+const Home = () => {
   return (
     <div>
       <HeroBanner />
+      <AvailableBusCard />
     </div>
   );
-}
+};
 
 export default Home;
