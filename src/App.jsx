@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import ErrorPage from "./pages/Error";
 import Booking from "./pages/Booking";
 import User from "./pages/User";
+import AuthLayout from "./components/layouts/AuthLayout";
+import Login from "./pages/Login";
+import SignUp from "./pages/Signup";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,22 @@ const router = createBrowserRouter([
       <CommonLayout>
         <User />
       </CommonLayout>
+    ),
+  },
+  {
+    path: "/login",
+    element: (
+      <AuthLayout>
+        <Login />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/signup",
+    element: (
+      <AuthLayout>
+        <SignUp />
+      </AuthLayout>
     ),
   },
   {

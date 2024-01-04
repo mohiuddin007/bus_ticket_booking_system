@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// BusSeat.js
 import { useState } from 'react';
 
 const BusSeat = ({ seatNumber, onSelect }) => {

@@ -45,24 +45,6 @@ const Navbar = () => {
             Home
           </Link>
           <Link
-            to="/about"
-            className="text-white font-medium hover:text-gray-300"
-          >
-            About Us
-          </Link>
-          <Link
-            to="/services"
-            className="text-white font-medium hover:text-gray-300"
-          >
-            Services
-          </Link>
-          <Link
-            to="/contact"
-            className="text-white font-medium hover:text-gray-300"
-          >
-            Contact
-          </Link>
-          <Link
             to="/login"
             className="text-white font-medium hover:text-gray-300"
           >
