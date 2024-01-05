@@ -45,15 +45,6 @@ const BookingForm = (props) => {
         };
         dispatch(setUserInfo(user));
       }
-      //   else if (!userInfo) {
-      //     const user = {
-      //       id: 1,
-      //       name: "John Doe",
-      //       email: "john@example.com",
-      //       bookingInfo: [bookingInfo],
-      //     };
-      //     dispatch(setUserInfo(user));
-      //   }
 
       //bus route update
       const updatedSeats = props?.data?.seats.map((seat) => {
@@ -69,6 +60,7 @@ const BookingForm = (props) => {
         })
       );
 
+      toast("Booking Successful");
       navigate("/user");
     } else {
       toast("Please select your seat!");

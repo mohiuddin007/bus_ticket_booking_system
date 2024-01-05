@@ -9,12 +9,6 @@ const UserInfoPage = () => {
   const busRoutes = useSelector((state) => state.bus.routes);
   const dispatch = useDispatch();
 
-  const userInfo = {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    password: "********",
-  };
 
   const handleCancelBooking = (param) => {
     const selectedSeat = param?.selectedSeat;
@@ -25,7 +19,7 @@ const UserInfoPage = () => {
       (item) => item?.bookedBus?.id != param?.bookedBus?.id
     );
     const user = {
-      ...userInfo,
+      ...loggedInUserInfo,
       bookingInfo: updatedBookingInfo,
     };
     dispatch(setUserInfo(user));
@@ -50,15 +44,15 @@ const UserInfoPage = () => {
       <h2 className="text-2xl font-bold mb-6">User Information</h2>
       <div className="bg-white p-4 rounded-md shadow-md mb-6">
         <h3 className="text-lg font-semibold mb-2">Profile</h3>
-        <p className="text-gray-600 mb-2">Name: {userInfo.name}</p>
-        <p className="text-gray-600 mb-2">Email: {userInfo.email}</p>
-        <p className="text-gray-600">Password: {userInfo.password}</p>
+        <p className="text-gray-600 mb-2">Name: {loggedInUserInfo?.name}</p>
+        <p className="text-gray-600 mb-2">Email: {loggedInUserInfo?.email}</p>
+        <p className="text-gray-600">Phone: {loggedInUserInfo?.phone}</p>
       </div>
 
       <h2 className="text-2xl font-bold mt-12 mb-6">
         Your booking Information
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {loggedInUserInfo?.bookingInfo &&
           Array.isArray(loggedInUserInfo?.bookingInfo) &&
           loggedInUserInfo?.bookingInfo.map((item, index) => (
@@ -68,23 +62,13 @@ const UserInfoPage = () => {
             >
               <SelectedBusDetails data={item?.bookedBus} />
 
-              <p className="text-gray-600">
-                Passenger Name:{" "}
-                {item?.selectedSeat.map((seatNum) => (
-                  <span key={seatNum} className="mx-1">
-                    {seatNum}
-                  </span>
-                ))}
+              <p className="text-gray-600 mt-1">
+                Passenger Name: {item?.passengerInfo?.name}
               </p>
-              <p className="text-gray-600">
-                Seat Number:{" "}
-                {item?.selectedSeat.map((seatNum) => (
-                  <span key={seatNum} className="mx-1">
-                    {seatNum}
-                  </span>
-                ))}
+              <p className="text-gray-600 mt-1">
+                Phone Number: {item?.passengerInfo?.phone}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mt-1">
                 Seat Number:{" "}
                 {item?.selectedSeat.map((seatNum) => (
                   <span key={seatNum} className="mx-1">
@@ -94,13 +78,23 @@ const UserInfoPage = () => {
               </p>
 
               <Button
-                className="mt-5"
+                className="mt-5 "
+                variant="cta"
                 onClick={() => handleCancelBooking(item)}
               >
                 Cancel Booking
               </Button>
             </div>
           ))}
+        {!loggedInUserInfo?.bookingInfo ? (
+          <p className="text-gray-600">You have no booking right now!</p>
+        ) : (
+          loggedInUserInfo?.bookingInfo &&
+          Array.isArray(loggedInUserInfo?.bookingInfo) &&
+          loggedInUserInfo?.bookingInfo.length === 0 && (
+            <p className="text-gray-600">You have no booking right now!</p>
+          )
+        )}
       </div>
     </div>
   );

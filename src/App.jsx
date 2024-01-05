@@ -8,6 +8,7 @@ import User from "./pages/User";
 import AuthLayout from "./components/layouts/AuthLayout";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,9 @@ const router = createBrowserRouter([
     path: "/booking/:slug",
     element: (
       <CommonLayout>
-        <Booking />
+        <PrivateRoute>
+          <Booking />
+        </PrivateRoute>
       </CommonLayout>
     ),
   },
@@ -30,7 +33,9 @@ const router = createBrowserRouter([
     path: "/user",
     element: (
       <CommonLayout>
-        <User />
+        <PrivateRoute>
+          <User />
+        </PrivateRoute>
       </CommonLayout>
     ),
   },

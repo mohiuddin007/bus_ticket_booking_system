@@ -14,7 +14,7 @@ const Button = ({
     "bg-transparent hover:bg-slate-500 text-gray-600 border border-slate-500 hover:border-transparent hover:text-white";
   const ghostStyle = "bg-transparent hover:bg-slate-300 text-gray-600";
   const blockStyle = "w-full";
-  const ctaStyle = "bg-purple-600 hover:bg-500-600 text-white";
+  const ctaStyle = "bg-red-800 hover:bg-500-600 text-white";
   return (
     <button
       className={classNames(

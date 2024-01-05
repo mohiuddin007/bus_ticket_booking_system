@@ -1,36 +1,61 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { auth } from "../../firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../../redux/userSlice";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    console.log('Logging in with:', { username, password });
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const loggedInfo = {
+          name: userCredential?.user?.displayName,
+          email: userCredential?.user?.email,
+          phone: userCredential?.user?.phoneNumber,
+        };
+        dispatch(setUserInfo(loggedInfo));
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
-  const handleSocialLogin = (provider) => {
-    console.log(`Logging in with ${provider}`);
-  };
-
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-200">
+    <div className="flex items-center justify-center py-16 bg-gray-200">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
         <div className="mb-4">
-          <label htmlFor="username" className="block text-sm font-medium text-gray-600">Username</label>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Email
+          </label>
           <input
             type="text"
-            id="username"
+            id="email"
             className="mt-1 p-2 w-full border rounded-md"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-600">Password</label>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Password
+          </label>
           <input
             type="password"
             id="password"
@@ -48,31 +73,12 @@ const LoginPage = () => {
           Login
         </button>
 
-        <div className="flex items-center justify-between">
-          <hr className="flex-grow border-t border-gray-400 mr-4" />
-
-          <span className="text-sm text-gray-500">Or login with</span>
-
-          <hr className="flex-grow border-t border-gray-400 ml-4" />
-        </div>
-
-        <div className="flex justify-around mt-4">
-          <button
-            className="bg-red-600 text-white p-2 rounded-md w-full hover:bg-red-700 m-2"
-            onClick={() => handleSocialLogin('Google')}
-          >
-            Google
-          </button>
-
-          <button
-            className="bg-blue-600 text-white p-2 rounded-md w-full hover:bg-blue-700 m-2"
-            onClick={() => handleSocialLogin('Facebook')}
-          >
-            Facebook
-          </button>
-        </div>
         <p className="text-sm text-gray-600 mt-4 text-center">
-          Create a new account <a href="/signup" className="text-blue-500 hover:underline">SignUp here</a>.
+          Create a new account{" "}
+          <a href="/signup" className="text-blue-500 hover:underline">
+            SignUp here
+          </a>
+          .
         </p>
       </div>
     </div>

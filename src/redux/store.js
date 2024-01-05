@@ -3,14 +3,15 @@ import {
 } from '@reduxjs/toolkit';
 import busReducer from './busSlice';
 import userReducer from './userSlice';
-import { predefinedRoutes } from '../constants/predefinedRoutes';
-
+import {
+    predefinedRoutes
+} from '../constants/predefinedRoutes';
 
 const storedRoutes = localStorage.getItem('busRoutes') ?
     JSON.parse(localStorage.getItem('busRoutes')) :
     predefinedRoutes;
 
-const storedUserInfo = localStorage.getItem('userInfo');
+let storedUserInfo = localStorage.getItem('userInfo');
 
 if (!localStorage.getItem('busRoutes')) {
     localStorage.setItem('busRoutes', JSON.stringify(predefinedRoutes));
