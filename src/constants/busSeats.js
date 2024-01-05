@@ -169,7 +169,7 @@ export const busSeats = [{
     {
         name: "I2",
         bookedBy: "",
-        isBooked: false
+        isBooked: true
     },
     {
         name: "I3",
