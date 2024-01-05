@@ -3,12 +3,14 @@ import SelectedBusDetails from "../booking/SelectedBusDetails";
 import Button from "../core/Button";
 import { setUserInfo } from "../../redux/userSlice";
 import { updateRoute } from "../../redux/busSlice";
+import { useState } from "react";
+import DeleteConfirmation from "./DeleteConfirmation";
 
 const UserInfoPage = () => {
   const loggedInUserInfo = useSelector((state) => state.user.userInfo);
   const busRoutes = useSelector((state) => state.bus.routes);
   const dispatch = useDispatch();
-
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleCancelBooking = (param) => {
     const selectedSeat = param?.selectedSeat;
@@ -80,12 +82,18 @@ const UserInfoPage = () => {
               <Button
                 className="mt-5 "
                 variant="cta"
-                onClick={() => handleCancelBooking(item)}
+                onClick={() => setIsVisible(true)}
               >
                 Cancel Booking
               </Button>
+              <DeleteConfirmation
+                onDelete={() => handleCancelBooking(item)}
+                isVisible={isVisible}
+                setIsVisible={setIsVisible}
+              />
             </div>
           ))}
+
         {!loggedInUserInfo?.bookingInfo ? (
           <p className="text-gray-600">You have no booking right now!</p>
         ) : (
