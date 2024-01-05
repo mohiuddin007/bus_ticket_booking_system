@@ -9,7 +9,7 @@ const AvailableBus = () => {
   };
 
   return (
-    <div className="p-5 my-4 rounded-lg bg-white border-2 border-blue-900 shadow-sm">
+    <div className="p-5 my-4 rounded-lg bg-white border-2 border-blue-900 shadow-md ">
       <div className="flex flex-wrap justify-between">
         <div className="">
           <h3 className="text-blue-900 font-bold">Hanif Enterprise</h3>
