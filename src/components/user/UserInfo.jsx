@@ -1,10 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import SelectedBusDetails from "../booking/SelectedBusDetails";
 import Button from "../core/Button";
+import { setUserInfo } from "../../redux/userSlice";
+import { updateRoute } from "../../redux/busSlice";
 
 const UserInfoPage = () => {
   const loggedInUserInfo = useSelector((state) => state.user.userInfo);
+  const busRoutes = useSelector((state) => state.bus.routes);
   const dispatch = useDispatch();
+
   const userInfo = {
     id: 1,
     name: "John Doe",
@@ -12,10 +16,33 @@ const UserInfoPage = () => {
     password: "********",
   };
 
-  console.log(loggedInUserInfo?.bookingInfo);
-
   const handleCancelBooking = (param) => {
-    console.log(param);
+    const selectedSeat = param?.selectedSeat;
+    const busInfo = busRoutes.find((bus) => bus?.id === param?.bookedBus?.id);
+
+    //cancel booking from userinfo
+    const updatedBookingInfo = loggedInUserInfo?.bookingInfo.filter(
+      (item) => item?.bookedBus?.id != param?.bookedBus?.id
+    );
+    const user = {
+      ...userInfo,
+      bookingInfo: updatedBookingInfo,
+    };
+    dispatch(setUserInfo(user));
+
+    //change isBooked value from bus routes
+    const updatedSeats = busInfo.seats.map((seat) => {
+      return {
+        ...seat,
+        isBooked: selectedSeat.includes(seat.name) && false,
+      };
+    });
+    dispatch(
+      updateRoute({
+        id: busInfo?.id,
+        updatedRoute: { ...busInfo, seats: updatedSeats },
+      })
+    );
   };
 
   return (
@@ -40,11 +67,23 @@ const UserInfoPage = () => {
               key={index + "bookinginfo"}
             >
               <SelectedBusDetails data={item?.bookedBus} />
-              {/* <h3 className="text-lg font-semibold mb-2">
-              {booking.destination}
-            </h3>
-            <p className="text-gray-600 mb-2">Date: {booking.date}</p> */}
 
+              <p className="text-gray-600">
+                Passenger Name:{" "}
+                {item?.selectedSeat.map((seatNum) => (
+                  <span key={seatNum} className="mx-1">
+                    {seatNum}
+                  </span>
+                ))}
+              </p>
+              <p className="text-gray-600">
+                Seat Number:{" "}
+                {item?.selectedSeat.map((seatNum) => (
+                  <span key={seatNum} className="mx-1">
+                    {seatNum}
+                  </span>
+                ))}
+              </p>
               <p className="text-gray-600">
                 Seat Number:{" "}
                 {item?.selectedSeat.map((seatNum) => (
@@ -55,10 +94,8 @@ const UserInfoPage = () => {
               </p>
 
               <Button
-              className="mt-5"
-                onClick={() =>
-                  handleCancelBooking(loggedInUserInfo?.bookingInfo)
-                }
+                className="mt-5"
+                onClick={() => handleCancelBooking(item)}
               >
                 Cancel Booking
               </Button>
