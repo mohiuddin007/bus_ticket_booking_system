@@ -17,7 +17,7 @@ const SeatBooking = () => {
   return (
     <div>
       <div className="bg-gray-200 flex flex-wrap items-center justify-center py-20">
-        <div className="bg-white p-8 rounded-lg shadow-md md:mr-4">
+        <div className="bg-white p-8 rounded-lg shadow-md md:mr-4 w-full md:w-4/12">
           <h2 className="text-2xl font-bold mb-3">Select Your Seat</h2>
           <div className="grid grid-cols-4 gap-4">
             <div>
@@ -64,24 +64,30 @@ const SeatBooking = () => {
             </p>
           </div>
         </div>
-        <div className="bg-white p-8 rounded-lg shadow-md md:ml-4">
-          <div className="flex justify-between my-2">
+        <div className="bg-white p-8 rounded-lg shadow-md md:ml-4 w-full md:w-7/12">
+          <div className="flex justify-between my-2 border px-2">
             <div>
-              <p>Seat Num: A1</p>
+              <p>
+                <span className="font-semibold text-gray-700">Seat Num:</span>{" "}
+                <span className="text-blue-900 font-bold">A1</span>{" "}
+              </p>
             </div>
             <div>
-              <p>700</p>
+              <p className="text-blue-900 font-bold text-xl">৳ 700</p>
             </div>
           </div>
           <div className="text-right">
-            <p>
-              <span>Total:</span>
-              <span>700</span>
+            <p className="text-xl">
+              <span className="font-semibold text-gray-700">Total:</span> {" "}
+              <span className="text-blue-900 font-bold ">৳ 700</span>
             </p>
           </div>
+          <div className="flex justify-center my-3 px-3">
           <Button onClick={handleSubmit} className="">
             Book Now
           </Button>
+          </div>
+       
         </div>
       </div>
     </div>

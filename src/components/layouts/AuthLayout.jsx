@@ -4,7 +4,7 @@ import Navbar from "../common/Navbar";
 
 const AuthLayout = ({ children }) => {
   return (
-    <div className="container mx-auto px-4">
+    <div>
       <Navbar />
       <div className="container mx-auto px-4">{children}</div>
       <Footer />

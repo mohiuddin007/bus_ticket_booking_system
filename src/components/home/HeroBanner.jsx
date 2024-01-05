@@ -4,10 +4,11 @@ const HeroBanner = () => {
       className="relative h-screen md:max-h-screen bg-cover bg-center"
       style={{
         backgroundImage:
-          'url("https://c8.alamy.com/comp/2EXTPCY/bus-stop-city-transport-people-waiting-buses-urban-street-road-men-and-women-public-transportation-vector-illustration-city-street-bus-traffic-transportation-2EXTPCY.jpg")',
+          'url("https://busbd.com.bd/images/banner/banner-bg-sm.webp")',
         height: "300px",
       }}
     >
+      {/* https://c8.alamy.com/comp/2EXTPCY/bus-stop-city-transport-people-waiting-buses-urban-street-road-men-and-women-public-transportation-vector-illustration-city-street-bus-traffic-transportation-2EXTPCY.jpg */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center text-white">

@@ -20,6 +20,7 @@ const UserInfoPage = () => {
         <p className="text-gray-600">Password: {userInfo.password}</p>
       </div>
 
+      <h2 className="text-2xl font-bold mt-12 mb-6">Your booking Information</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {bookedInfo.map((booking) => (
           <div key={booking.id} className="bg-white p-4 rounded-md shadow-md">
