@@ -4,12 +4,33 @@ import {
 import busReducer from './busSlice';
 import userReducer from './userSlice';
 
-const storedRoutes = localStorage.getItem('busRoutes');
+const predefinedRoutes = [{
+        id: 1,
+        departure: 'City A',
+        arrival: 'City B',
+        time: '9:00 AM'
+    },
+    {
+        id: 2,
+        departure: 'City B',
+        arrival: 'City C',
+        time: '11:00 AM'
+    },
+];
+
+const storedRoutes = localStorage.getItem('busRoutes') ?
+    JSON.parse(localStorage.getItem('busRoutes')) :
+    predefinedRoutes;
+
 const storedUserInfo = localStorage.getItem('userInfo');
+
+if (!localStorage.getItem('busRoutes')) {
+    localStorage.setItem('busRoutes', JSON.stringify(predefinedRoutes));
+}
 
 const initialState = {
     bus: {
-        routes: storedRoutes ? JSON.parse(storedRoutes) : [],
+        routes: storedRoutes,
     },
     user: {
         userInfo: storedUserInfo ? JSON.parse(storedUserInfo) : null,
