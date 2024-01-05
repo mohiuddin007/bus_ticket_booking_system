@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import AvailableBus from "../components/home/AvailableBus";
 import HeroBanner from "../components/home/HeroBanner";
 
 const Home = () => {
+  const busRoutes = useSelector((state) => state.bus.routes);
+  console.log(busRoutes)
   return (
     <div className="bg-gray-200">
       <HeroBanner />

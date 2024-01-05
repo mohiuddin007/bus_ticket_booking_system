@@ -3,20 +3,8 @@ import {
 } from '@reduxjs/toolkit';
 import busReducer from './busSlice';
 import userReducer from './userSlice';
+import { predefinedRoutes } from '../constants/predefinedRoutes';
 
-const predefinedRoutes = [{
-        id: 1,
-        departure: 'City A',
-        arrival: 'City B',
-        time: '9:00 AM'
-    },
-    {
-        id: 2,
-        departure: 'City B',
-        arrival: 'City C',
-        time: '11:00 AM'
-    },
-];
 
 const storedRoutes = localStorage.getItem('busRoutes') ?
     JSON.parse(localStorage.getItem('busRoutes')) :
