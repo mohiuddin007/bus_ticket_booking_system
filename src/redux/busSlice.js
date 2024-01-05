@@ -12,6 +12,19 @@ const busSlice = createSlice({
             state.routes.push(action.payload);
             localStorage.setItem('busRoutes', JSON.stringify(state.routes));
         },
+        updateRoute: (state, action) => {
+            const {
+                id,
+                updatedRoute
+            } = action.payload;
+            state.routes = state.routes.map(route =>
+                route.id === id ? {
+                    ...route,
+                    ...updatedRoute
+                } : route
+            );
+            localStorage.setItem('busRoutes', JSON.stringify(state.routes));
+        },
         removeRoute: (state, action) => {
             state.routes = state.routes.filter((route) => route.id !== action.payload);
             localStorage.setItem('busRoutes', JSON.stringify(state.routes));
@@ -21,6 +34,7 @@ const busSlice = createSlice({
 
 export const {
     addRoute,
+    updateRoute,
     removeRoute
 } = busSlice.actions;
 export default busSlice.reducer;

@@ -7,7 +7,7 @@ const BusSeat = ({ seatNumber, isBooked, onSelect }) => {
 
   const handleSeatClick = () => {
     if (isBooked) {
-      toast("Already Booked this seat!");
+      toast("This seat is already booked!");
     } else {
       setIsSelected(!isSelected);
       onSelect(seatNumber, !isSelected);

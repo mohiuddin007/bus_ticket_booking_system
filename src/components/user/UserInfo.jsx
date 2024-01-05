@@ -1,14 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
+import SelectedBusDetails from "../booking/SelectedBusDetails";
+import Button from "../core/Button";
+
 const UserInfoPage = () => {
+  const loggedInUserInfo = useSelector((state) => state.user.userInfo);
+  const dispatch = useDispatch();
   const userInfo = {
     id: 1,
     name: "John Doe",
     email: "john@example.com",
     password: "********",
   };
-  const bookedInfo = [
-    { id: 1, destination: "City A", date: "2022-08-10", seatNumber: "A1" },
-    { id: 2, destination: "City B", date: "2022-08-15", seatNumber: "B2" },
-  ];
+
+  console.log(loggedInUserInfo?.bookingInfo);
+
+  const handleCancelBooking = (param) => {
+    console.log(param);
+  };
 
   return (
     <div className="container mx-auto mt-8">
@@ -20,17 +28,42 @@ const UserInfoPage = () => {
         <p className="text-gray-600">Password: {userInfo.password}</p>
       </div>
 
-      <h2 className="text-2xl font-bold mt-12 mb-6">Your booking Information</h2>
+      <h2 className="text-2xl font-bold mt-12 mb-6">
+        Your booking Information
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {bookedInfo.map((booking) => (
-          <div key={booking.id} className="bg-white p-4 rounded-md shadow-md">
-            <h3 className="text-lg font-semibold mb-2">
+        {loggedInUserInfo?.bookingInfo &&
+          Array.isArray(loggedInUserInfo?.bookingInfo) &&
+          loggedInUserInfo?.bookingInfo.map((item, index) => (
+            <div
+              className="bg-white p-4 rounded-md shadow-md"
+              key={index + "bookinginfo"}
+            >
+              <SelectedBusDetails data={item?.bookedBus} />
+              {/* <h3 className="text-lg font-semibold mb-2">
               {booking.destination}
             </h3>
-            <p className="text-gray-600 mb-2">Date: {booking.date}</p>
-            <p className="text-gray-600">Seat Number: {booking.seatNumber}</p>
-          </div>
-        ))}
+            <p className="text-gray-600 mb-2">Date: {booking.date}</p> */}
+
+              <p className="text-gray-600">
+                Seat Number:{" "}
+                {item?.selectedSeat.map((seatNum) => (
+                  <span key={seatNum} className="mx-1">
+                    {seatNum}
+                  </span>
+                ))}
+              </p>
+
+              <Button
+              className="mt-5"
+                onClick={() =>
+                  handleCancelBooking(loggedInUserInfo?.bookingInfo)
+                }
+              >
+                Cancel Booking
+              </Button>
+            </div>
+          ))}
       </div>
     </div>
   );
