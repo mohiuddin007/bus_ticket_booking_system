@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { auth } from "../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUserInfo } from "../../redux/userSlice";
 
@@ -75,9 +75,9 @@ const LoginPage = () => {
 
         <p className="text-sm text-gray-600 mt-4 text-center">
           Create a new account{" "}
-          <a href="/signup" className="text-blue-500 hover:underline">
+          <Link href="/signup" className="text-blue-500 hover:underline">
             SignUp here
-          </a>
+          </Link>
           .
         </p>
       </div>

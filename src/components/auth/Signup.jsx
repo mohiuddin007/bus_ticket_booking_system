@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebaseConfig";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SignUpPage = () => {
@@ -63,42 +63,17 @@ const SignUpPage = () => {
         </div>
 
         <button
-          className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 w-full mb-4"
+          className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 w-full mb-4"
           onClick={handleSignUp}
         >
           Sign Up
         </button>
 
-        {/* <div className="flex items-center justify-between">
-          <hr className="flex-grow border-t border-gray-400 mr-4" />
-
-          <span className="text-sm text-gray-500">Or sign up with</span>
-
-          <hr className="flex-grow border-t border-gray-400 ml-4" />
-        </div> */}
-
-        {/* <div className="flex justify-around mt-4">
-          <button
-            className="bg-red-600 text-white p-2 rounded-md w-full m-2 hover:bg-red-700"
-            onClick={() => handleSocialSignUp("Google")}
-          >
-            Google
-          </button>
-
-          <button
-            className="bg-blue-600 text-white p-2 rounded-md w-full m-2 hover:bg-blue-700"
-            onClick={() => handleSocialSignUp("Facebook")}
-          >
-            Facebook
-          </button>
-        </div> */}
-
         <p className="text-sm text-gray-600 mt-4 text-center">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <Link href="/login" className="text-blue-500 hover:underline">
             Login here
-          </a>
-          .
+          </Link>
         </p>
       </div>
     </div>
