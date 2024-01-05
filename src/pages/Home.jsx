@@ -1,11 +1,11 @@
-import AvailableBusCard from "../components/home/AvailableBus";
+import AvailableBus from "../components/home/AvailableBus";
 import HeroBanner from "../components/home/HeroBanner";
 
 const Home = () => {
   return (
-    <div>
+    <div >
       <HeroBanner />
-      <AvailableBusCard />
+      <AvailableBus />
     </div>
   );
 };
