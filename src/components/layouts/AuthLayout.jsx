@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import Footer from "../common/Footer";
-import Navbar from "../common/Navbar";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const AuthLayout = ({ children }) => {
   return (
